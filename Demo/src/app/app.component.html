@@ -1,0 +1,40 @@
+ <!--HTML for form Component-->
+<div class="container">
+  <h2>Form Demo</h2>
+  <!--Used NgSubmit to submit the form but (click) on the button could also be used in this simple example.-->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="money">Amount ($)</label>
+    <input id="money" type="number" formControlName="money" required />
+
+    <label for="date">Select Date</label>
+    <input id="date" type="date" formControlName="date" required />
+
+    <label>Options</label>
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="option1" />
+        Option 1
+      </label>
+      <label>
+        <input type="checkbox" formControlName="option2" checked />
+        Option 2 (default checked)
+      </label>
+    </div>
+
+    <label for="dropdown">Choose an option <span class="required">*</span></label>
+    <select id="dropdown" formControlName="dropdown">
+      <option value="">-- Select --</option>
+      <option value="optionA">Option A</option>
+      <option value="optionB">Option B</option>
+    </select>
+
+    <!-- Using these booleans to display correct messages when submit is hit-->
+    <div *ngIf="dropdownError" class="error-message">Please select an option from the dropdown.</div>
+    <div *ngIf="submitted" class="submitted-message">Form Submitted.</div>
+
+    <div class="button-group">
+      <button type="submit">Submit</button>
+      <button type="button" (click)="resetForm()">Clear</button>
+    </div>
+  </form>
+</div>
